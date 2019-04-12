@@ -12,7 +12,7 @@ from flask import Flask, request
 from pymessenger.bot import Bot
 
 app = Flask(__name__)
-ACCESS_TOKEN = 'ACCESS_TOKEN'
+ACCESS_TOKEN = 'EAAD9BihriWABACwkkizNycnUQf48znQLEFv1ZCEZBkLZCjmW6kaMJENOSZAmTC3c1236bkZBDcc9NA4FjsTZBASVV8Lqhi7YPkKE3cXK3hXCOeNL6kQruoR9cUXdX0KqZC9UsfWOEbvwoCr9W39WMvIYRyBFaTfTHjU7NZBSs9aJdmlZBj9yfp6vu'
 VERIFY_TOKEN = 'VERIFY_TOKEN'
 bot = Bot(ACCESS_TOKEN)
 
