@@ -15,4 +15,4 @@ def receive_message():
 
 
 if __name__ == '__main__':
-    app.run(host='sjdev.nazwa.pl', port=5000)
+    app.run(host='hackchat.sjdev.nazwa.pl', port=5000)
