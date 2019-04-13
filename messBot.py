@@ -10,12 +10,13 @@ Created on Fri Apr 12 20:41:32 2019
 import random
 from flask import Flask, request
 from pymessenger.bot import Bot
-import elasticsearch 
+from elasticsearch import Elasticsearch
 
 app = Flask(__name__)
 ACCESS_TOKEN = 'EAAD9BihriWABACKPLWlgn3mVo5NHttTaWO93pBWBsptvzzutmk2LuC1wKyif7odJiK05IH2aXVgJIvGltD1VZCZCtf0JvUSfsUndEJN0Bm1MtAz0y2Jo6UeWayKPPBuONbU8JX5WMj3a0LuZA0dMnFAPSOCBdSnxdR6LS6nEiXD6ZAWZBo6rZC'
 VERIFY_TOKEN = 'VERIFY_TOKEN'
 bot = Bot(ACCESS_TOKEN)
+es = Elasticsearch()
 
 #We will receive messages that Facebook sends our bot at this endpoint 
 @app.route("/", methods=['GET', 'POST'])
@@ -31,6 +32,9 @@ def receive_message():
         # get whatever message a user sent the bot
        output = request.get_json()
        for event in output['entry']:
+          print()
+          print(event)
+          print()
           messaging = event['messaging']
           for message in messaging:
             if message.get('message'):
@@ -38,16 +42,21 @@ def receive_message():
                 sender_id = message['sender']['id']
                 #recipient_id -> z allegro
                 message_id = message['message']['mid']
-                message_text = message['message']['text']
+                message_text = message['message'].get('text', '')
                 timestamp = message['timestamp']
-                attachments = {[x['payload']['url'] for x in list if x['type'] == 'image']}
-                if message['message'].get('text'):
-                    response_sent_text = get_message()
-                    send_message(recipient_id, response_sent_text)
-                #if user sends us a GIF, photo,video, or any other non-text item
-                if message['message'].get('attachments'):
-                    response_sent_nontext = get_message()
-                    send_message(recipient_id, response_sent_nontext)
+                attachments = [x['payload']['url'] for x in message.get('attachments', []) if x['type'] == 'image']
+                
+                doc = {
+                        'sender_id': sender_id,
+                        'message_id': message_id,
+                        #'recipient_id' = recipient_id,
+                        'message_text': message_text,
+                        'timestamp': timestamp,
+                        'attachments': attachments                        
+                        }
+                
+                es.index(index="test-index", doc_type='tweet', body=doc)
+                
     return "Message Processed"
 
 
