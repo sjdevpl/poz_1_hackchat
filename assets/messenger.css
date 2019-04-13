@@ -37,32 +37,40 @@
   margin: 0;
   padding: 5px 10px 5px 12px;
   width: 100%;
-  border-bottom: #464646 1px solid;
+ 
  
 }
 .time_date {
-  color: #747474;
-  display: block;
-  font-size: 12px;
-  margin: 8px 0 0;
+color: #747474;
+    display: block;
+    font-size: 12px;
+   
+    float: right;
+    padding-right: 10px;
 }
 .received_withd_msg { width: auto;}
 .mesgs {
   float: left;
   
   padding: 30px 15px 0px 25px;
+  
   width: 60%;
 }
 
  .sent_msg p {
-  background: #05728f none repeat scroll 0 0;
+  
   /* border-radius: 30px; */
   font-size: 14px;
   margin: 0; color:#fff;
   padding: 5px 10px 5px 12px;
   width:100%;
 }
-.outgoing_msg{ overflow:hidden; margin:26px 0 26px;}
+.outgoing_msg{
+	background: #ffcc99 none repeat scroll 0 0;
+	color: #fff;
+	overflow:hidden; margin:26px 0 26px;
+	padding: 5px 0 0 0;}
+
 .sent_msg {
   float: left;
   width: 100%;
