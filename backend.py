@@ -2,14 +2,17 @@
 
 from flask import Flask, request, session, abort
 from flask_restful import Resource, Api, reqparse
+from flask_restful.utils import cors
 from flask_session import Session
 from elasticsearch import Elasticsearch
 from pymessenger.bot import Bot
+
 
 import time
 
 app = Flask(__name__)
 api = Api(app)
+api.decorators=[cors.crossdomain(origin='*')]
 app.config['SECRET_KEY'] = '_5#y2L"F4Q8zsdhgfdh'
 app.config['SESSION_TYPE'] = "filesystem"
 Session(app)
