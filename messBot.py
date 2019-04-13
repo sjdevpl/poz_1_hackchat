@@ -10,9 +10,10 @@ Created on Fri Apr 12 20:41:32 2019
 import random
 from flask import Flask, request
 from pymessenger.bot import Bot
+import elasticsearch 
 
 app = Flask(__name__)
-ACCESS_TOKEN = 'EAAD9BihriWABACwkkizNycnUQf48znQLEFv1ZCEZBkLZCjmW6kaMJENOSZAmTC3c1236bkZBDcc9NA4FjsTZBASVV8Lqhi7YPkKE3cXK3hXCOeNL6kQruoR9cUXdX0KqZC9UsfWOEbvwoCr9W39WMvIYRyBFaTfTHjU7NZBSs9aJdmlZBj9yfp6vu'
+ACCESS_TOKEN = 'EAAD9BihriWABACKPLWlgn3mVo5NHttTaWO93pBWBsptvzzutmk2LuC1wKyif7odJiK05IH2aXVgJIvGltD1VZCZCtf0JvUSfsUndEJN0Bm1MtAz0y2Jo6UeWayKPPBuONbU8JX5WMj3a0LuZA0dMnFAPSOCBdSnxdR6LS6nEiXD6ZAWZBo6rZC'
 VERIFY_TOKEN = 'VERIFY_TOKEN'
 bot = Bot(ACCESS_TOKEN)
 
@@ -20,6 +21,7 @@ bot = Bot(ACCESS_TOKEN)
 @app.route("/", methods=['GET', 'POST'])
 def receive_message():
     if request.method == 'GET':
+        print("1")
         """Before allowing people to message your bot, Facebook has implemented a verify token
         that confirms all requests that your bot receives came from Facebook.""" 
         token_sent = request.args.get("hub.verify_token")
@@ -33,7 +35,12 @@ def receive_message():
           for message in messaging:
             if message.get('message'):
                 #Facebook Messenger ID for user so we know where to send response back to
-                recipient_id = message['sender']['id']
+                sender_id = message['sender']['id']
+                #recipient_id -> z allegro
+                message_id = message['message']['mid']
+                message_text = message['message']['text']
+                timestamp = message['timestamp']
+                attachments = {[x['payload']['url'] for x in list if x['type'] == 'image']}
                 if message['message'].get('text'):
                     response_sent_text = get_message()
                     send_message(recipient_id, response_sent_text)
