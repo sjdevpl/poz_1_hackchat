@@ -66,8 +66,8 @@ function takeDataFromServer(last_message) {
     http.withCredentials = true;
     http.send();
 }
-// initServer();
-// takeDataFromServer();
+initServer();
+takeDataFromServer();
 
 function sendMessage(buyer_id, message_text, last_message) {
     if(!last_message) last_message = (+new Date())-24*60*60*1000
