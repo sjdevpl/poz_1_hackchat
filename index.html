@@ -1,354 +1,286 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1,
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,
       shrink-to-fit=no">
-    <meta name="description" content="">
-    
-   
-    <title>HackChat · Chat</title>
+  <meta name="description" content="">
 
-    
 
-    <!-- Bootstrap core CSS -->
-    <link href="assets/bootstrap.css" rel="stylesheet"
-    
-      crossorigin="anonymous">
-      <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-      type="text/css"
-      rel="stylesheet" />
+  <title>HackChat · Chat</title>
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
+
+
+  <!-- Bootstrap core CSS -->
+  <link href="assets/bootstrap.css" rel="stylesheet" crossorigin="anonymous">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css"
+    rel="stylesheet" />
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+  <!-- Custom styles for this template -->
+  <link href="assets/dashboard.css" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="assets/messenger.css">
+  <style type="text/css">
+    /* Chart.js */
+    @-webkit-keyframes chartjs-render-animation {
+      from {
+        opacity: 0.99
       }
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
+      to {
+        opacity: 1
       }
-    </style>
-    <!-- Custom styles for this template -->
-    <link href="assets/dashboard.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="assets/messenger.css">
-    <style type="text/css">/* Chart.js */
-@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
-  <body>
-    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">HackChat</a>
-      <input class="form-control form-control-dark w-100" type="text"
-        placeholder="Search" aria-label="Search">
-      <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-          <a class="nav-link" href="#">Sign out</a>
-        </li>
-      </ul>
-    </nav>
+    }
 
-    <div class="container-fluid">
-      <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-          <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link active" href="#">
+    @keyframes chartjs-render-animation {
+      from {
+        opacity: 0.99
+      }
 
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" class="feather feather-home"><path
-                      d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline
-                      points="9 22 9 12 15 12 15 22"></polyline></svg>
+      to {
+        opacity: 1
+      }
+    }
 
-                  Chat <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" class="feather feather-file"><path
-                      d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0
-                      2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
-                  History
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" class="feather
-                    feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle
-                      cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68
-                      13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                  Products
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" class="feather feather-users"><path
-                      d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle
-                      cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0
-                      0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                  Customers
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" class="feather feather-bar-chart-2"><line
-                      x1="18" y1="20" x2="18" y2="10"></line><line x1="12"
-                      y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6"
-                      y2="14"></line></svg>
-                  Reports
-                </a>
-              </li>
+    .chartjs-render-monitor {
+      -webkit-animation: chartjs-render-animation 0.001s;
+      animation: chartjs-render-animation 0.001s;
+    }
+  </style>
+</head>
 
-            </ul>
+<body>
+  <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">HackChat</a>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <a class="nav-link" href="#">Sign out</a>
+      </li>
+    </ul>
+  </nav>
 
-            <h6 class="sidebar-heading d-flex justify-content-between
-              align-items-center px-3 mt-4 mb-1 text-muted">
-              <span>Closed conversations</span>
-              <a class="d-flex align-items-center text-muted" href="#">
-                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>-->
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-home">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+
+                Chat <span class="sr-only">(current)</span>
               </a>
-            </h6>
-            <ul class="nav flex-column mb-2">
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" class="feather feather-users"><path
-                      d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle
-                      cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0
-                      0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                  Adam23
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" class="feather feather-users"><path
-                      d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle
-                      cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0
-                      0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                  OlaZopola
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" class="feather feather-users"><path
-                      d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle
-                      cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0
-                      0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                  SprzedamOpla
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" class="feather feather-users"><path
-                      d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle
-                      cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0
-                      0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                  buziaczek12
-                </a>
-              </li>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-file">
+                  <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0
+                      2-2V9z"></path>
+                  <polyline points="13 2 13 9 20 9"></polyline>
+                </svg>
+                History
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather
+                    feather-shopping-cart">
+                  <circle cx="9" cy="21" r="1"></circle>
+                  <circle cx="20" cy="21" r="1"></circle>
+                  <path d="M1 1h4l2.68
+                      13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                Products
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-users">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0
+                      0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                Customers
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-bar-chart-2">
+                  <line x1="18" y1="20" x2="18" y2="10"></line>
+                  <line x1="12" y1="20" x2="12" y2="4"></line>
+                  <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+                Reports
+              </a>
+            </li>
+
+          </ul>
+
+          <h6 class="sidebar-heading d-flex justify-content-between
+              align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Last Conversation</span>
+            <a class="d-flex align-items-center text-muted" href="#">
+              <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>-->
+            </a>
+          </h6>
+          <ul class="nav flex-column mb-2" id="last-conversation">
+
+          </ul>
+        </div>
+      </nav>
+
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+
+        <div class="d-flex flex-wrap flex-md-nowrap align-items-center pt-3
+            pb-2 mb-3 border-bottom">
+          <h1 class="h2 page-title">Chat</h1>
+          <div class="d-flex align-items-center active-user-list">
+            <h2 class="h5 padding-right-20">Aktywni użytkownicy</h2>
+            <ul class="list-group" id="list-clients">
+            <!-- <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+
+              <li class="active"><a href="#red" data-toggle="tab">Red</a></li>
+              <li><a href="#orange" data-toggle="tab">Orange</a></li>
+              <li><a href="#yellow" data-toggle="tab">Yellow</a></li>
+              <li><a href="#green" data-toggle="tab">Green</a></li>
+              <li><a href="#blue" data-toggle="tab">Blue</a></li> -->
+
+              <li class="list-group-item">
+                  <img class="user-ico"
+                    src="https://ptetutorials.com/images/user-profile.png"
+                    alt="sunil">
+                </li>
+                <li class="list-group-item" id="user1">
+                  <img class="user-ico"
+                    src="https://ptetutorials.com/images/user-profile.png"
+                    alt="sunil">
+                </li>
+                <li class="list-group-item" id="user2">
+                  <img class="user-ico"
+                    src="https://ptetutorials.com/images/user-profile.png"
+                    alt="sunil">
+                </li>
+                <li class="list-group-item" id="user3">
+                  <img class="user-ico"
+                    src="https://ptetutorials.com/images/user-profile.png"
+                    alt="sunil">
+                </li>
+                <li class="list-group-item">
+                  <img class="user-ico"
+                    src="https://ptetutorials.com/images/user-profile.png"
+                    alt="sunil">
+                </li>
+                <li class="list-group-item">
+                  <img class="user-ico"
+                    src="https://ptetutorials.com/images/user-profile.png"
+                    alt="sunil">
+                </li>
+                <li class="list-group-item">
+                  <img class="user-ico"
+                    src="https://ptetutorials.com/images/user-profile.png"
+                    alt="sunil">
+                </li>
             </ul>
           </div>
-        </nav>
+        </div>
+        <div class="row">
+          <div class="info-wrap col-md-6">
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                  aria-selected="true">Aktywna aukcja</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="similar-products-tab" data-toggle="tab" href="#similar-products" role="tab"
+                  aria-controls="similar-products" aria-selected="false">Podobne produkty</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-         
-          <div class="d-flex flex-wrap flex-md-nowrap align-items-center pt-3
-            pb-2 mb-3 border-bottom">
-            <h1 class="h2 page-title">Chat</h1>
-            <div class="d-flex align-items-center active-user-list">
-              <h2 class="h5 padding-right-20">Aktywni użytkownicy</h2>
-              <ul class="list-group">
-                <li class="list-group-item">
-                  <img class="user-ico"
-                    src="https://ptetutorials.com/images/user-profile.png"
-                    alt="sunil">
-                </li>
-                <li class="list-group-item">
-                  <img class="user-ico"
-                    src="https://ptetutorials.com/images/user-profile.png"
-                    alt="sunil">
-                </li>
-                <li class="list-group-item">
-                  <img class="user-ico"
-                    src="https://ptetutorials.com/images/user-profile.png"
-                    alt="sunil">
-                </li>
-                <li class="list-group-item active">
-                  <img class="user-ico"
-                    src="https://ptetutorials.com/images/user-profile.png"
-                    alt="sunil">
-                </li>
-                <li class="list-group-item">
-                  <img class="user-ico"
-                    src="https://ptetutorials.com/images/user-profile.png"
-                    alt="sunil">
-                </li>
-                <li class="list-group-item">
-                  <img class="user-ico"
-                    src="https://ptetutorials.com/images/user-profile.png"
-                    alt="sunil">
-                </li>
-                <li class="list-group-item">
-                  <img class="user-ico"
-                    src="https://ptetutorials.com/images/user-profile.png"
-                    alt="sunil">
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="row">
-            <div class="info-wrap col-md-6">
-              <ul class="nav nav-tabs">
-                <li class="nav-item">
-                  <a class="nav-link active" id="home-tab" data-toggle="tab"
-                    href="#home" role="tab" aria-controls="home"
-                    aria-selected="true">Aktywna aukcja</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" id="similar-products-tab"
-                    data-toggle="tab"
-                    href="#similar-products" role="tab"
-                    aria-controls="similar-products"
-                    aria-selected="false">Podobne produkty</a>
-                </li>
-              </ul>
-              <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel"
-                  aria-labelledby="home-tab">
-
-                  <div class="allegro">
-                    <iframe
-                      src="https://allegro.pl/oferta/buty-big-star-damskie-trampki-czerwone-bb274724-7894993139"
-                      width="100%" height="100%"></iframe>
-                  </div>
+                <div class="allegro">
+                  <iframe src="https://allegro.pl/oferta/buty-big-star-damskie-trampki-czerwone-bb274724-7894993139"
+                    width="100%" height="100%"></iframe>
                 </div>
-                <div class="tab-pane fade" id="similar-products" role="tabpanel"
-                  aria-labelledby="similar-products-tab">
+              </div>
+              <div class="tab-pane fade" id="similar-products" role="tabpanel" aria-labelledby="similar-products-tab">
 
-                  <div class="allegro products">
-                    <iframe
-                      src="https://allegro.pl/uzytkownik/sklep-mombasa1/damskie-trampki-87981?bmatch=baseline-var-n-fas-1-0-0131"
-                      width="100%" height="100%"></iframe>
-                  </div>
+                <div class="allegro products">
+                  <iframe
+                    src="https://allegro.pl/uzytkownik/sklep-mombasa1/damskie-trampki-87981?bmatch=baseline-var-n-fas-1-0-0131"
+                    width="100%" height="100%"></iframe>
                 </div>
               </div>
             </div>
-            <div class="conversation-wrap col-md-6">
-              <div class="conversation-header"> Topic</div>
-              <div class="messaging">
-                <div class="inbox_msg">
-                    <div class="msg_history" id="msg_history">
-                        <div class="message incoming_msg">
-                            <!-- <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div> -->
-                            <div class="received_msg">
-                                <div class="received_withd_msg">
-                                    <p>Test which is a new approach to have all
-                                        solutions</p>
-                                    <span class="time_date"> 11:01 AM | June 9</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="message outgoing_msg">
-                            <div class="sent_msg">
-                                <p>Test which is a new approach to have all
-                                    solutions</p>
-                                <p>Test which is a new approach to have all
-                                    solutions</p>
-                                <span class="time_date"> 11:01 AM | June 9</span>
-                            </div>
-                        </div>
-
-                        <div class="message incoming_msg">
-                            <!-- <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div> -->
-                            <div class="received_msg">
-                                <div class="received_withd_msg">
-                                    <p>Test, which is a new approach to have</p>
-                                    <span class="time_date"> 11:01 AM |
-                                        Yesterday</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="message outgoing_msg">
-                            <div class="sent_msg">
-                                <p>Apollo University, Delhi, India Test</p>
-                                <span class="time_date"> 11:01 AM | Today</span>
-                            </div>
-                        </div>
-                        <div class="message incoming_msg">
-                            <!-- <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div> -->
-                            <div class="received_msg">
-                                <div class="received_withd_msg">
-                                    <p>We work directly with our designers and
-                                        suppliers,
-                                        and sell direct to you, which means
-                                        quality, exclusive
-                                        products, at a price anyone can afford.</p>
-                                    <span class="time_date"> 11:01 AM | Today</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="type_msg">
-                        <div class="input_msg_write">
-                            <input type="text" class="write_msg" id="messageOut"
-                                placeholder="Type a message" />
-                            <button class="msg_send_btn" type="button"><i
-                                    class="fa fa-paper-plane-o"
-                                    aria-hidden="true"></i></button>
-                        </div>
-                    </div>
+          </div>
+          <div class="conversation-wrap col-md-6">
+            <div class="conversation-header"> Messenger</div>
+            <div class="messaging">
+              <div class="inbox_msg">
+                <div class="msg_history" id="msg_history">
 
                 </div>
-            </div>
+
+                <div class="type_msg">
+                  <div class="input_msg_write">
+                    <input type="text" class="write_msg" id="messageOut" placeholder="Type a message" />
+                    <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o"
+                        aria-hidden="true"></i></button>
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
-          </main>
         </div>
-      </div>
-      <script src="assets/jquery-3.js"      
-        ></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"          
-            ></script>
-      
-      <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script
-        src="assets/bootstrap.js"></script>
-      
-      <script src="assets/feather.js"></script>
-      <script type="text/javascript" src="messenger.js"></script>
-      <script src="assets/dashboard.js"></script>
+      </main>
+    </div>
+  </div>
+  <script src="assets/jquery-3.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
-    </body></html>
+  <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+  <script src="assets/bootstrap.js"></script>
+
+  <script src="assets/feather.js"></script>
+  <script type="text/javascript" src="messenger.js"></script>
+
+  <script src="assets/dashboard.js"></script>
+  <script type="text/javascript" src="client.js"></script>
+
+</body>
+
+</html>
