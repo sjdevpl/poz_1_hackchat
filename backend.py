@@ -31,12 +31,12 @@ class Chat(Resource):
     def get(self, mtimestamp: int):
         if "login" in session:
             es.indices.refresh(index="test-index")
-            res = es.search(index="test-index", body={"query": {"range": {"timestamp": {"gt": mtimestamp}}}})
+            res = es.search(index="test-index", body={"query": {"range": {"timestamp": {"gt": mtimestamp}}, "match": {"seller_id": session['login']}}})
             return [x['_source'] for x in res['hits']['hits']]
         else:
             abort(401)
 
-    def put(self, mtimestamp: id):
+    def put(self, mtimestamp: int):
         if "login" in session:
             args = self.parser.parse_args()
             if args["message"] is None or args['buyer_id'] is None:
