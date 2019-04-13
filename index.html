@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,
       shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap
-      contributors">
-    <meta name="generator" content="Jekyll v3.8.5">
-    <title>Dashboard Template · Bootstrap</title>
+    
+   
+    <title>HackChat · Chat</title>
 
-    <link rel="canonical"
-      href="https://getbootstrap.com/docs/4.3/examples/dashboard/">
+    
 
     <!-- Bootstrap core CSS -->
     <link href="assets/bootstrap.css" rel="stylesheet"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    
       crossorigin="anonymous">
-
+      <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+      type="text/css"
+      rel="stylesheet" />
 
     <style>
       .bd-placeholder-img {
@@ -37,6 +38,7 @@
     </style>
     <!-- Custom styles for this template -->
     <link href="assets/dashboard.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="assets/messenger.css">
     <style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
   <body>
@@ -180,17 +182,7 @@
         </nav>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-          <div style="position: absolute; inset: 0px; overflow: hidden;
-            pointer-events: none; visibility: hidden; z-index: -1;"
-            class="chartjs-size-monitor">
-            <div class="chartjs-size-monitor-expand"
-              style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-              <div
-                style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div>
-            <div class="chartjs-size-monitor-shrink"
-              style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-              <div style="position:absolute;width:200%;height:200%;left:0;
-                top:0"></div></div></div>
+         
           <div class="d-flex flex-wrap flex-md-nowrap align-items-center pt-3
             pb-2 mb-3 border-bottom">
             <h1 class="h2 page-title">Chat</h1>
@@ -244,65 +236,119 @@
                     aria-selected="true">Aktywna aukcja</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="similar-products-tab" data-toggle="tab"
-                    href="#similar-products" role="tab" aria-controls="similar-products"
+                  <a class="nav-link" id="similar-products-tab"
+                    data-toggle="tab"
+                    href="#similar-products" role="tab"
+                    aria-controls="similar-products"
                     aria-selected="false">Podobne produkty</a>
                 </li>
               </ul>
               <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel"
                   aria-labelledby="home-tab">
-                  
+
                   <div class="allegro">
-                    <iframe src="https://allegro.pl/oferta/buty-big-star-damskie-trampki-czerwone-bb274724-7894993139"
-                     width="100%" height="100%" ></iframe>
-                    </div>
-                  </div>
-                  <div class="tab-pane fade" id="similar-products" role="tabpanel"
-                    aria-labelledby="similar-products-tab">
-                    
-                    <div class="allegro products">
-                      <iframe
-                        src="https://allegro.pl/uzytkownik/sklep-mombasa1/damskie-trampki-87981?bmatch=baseline-var-n-fas-1-0-0131"
-                        width="100%" height="100%" ></iframe>
-                      </div>
-                    </div>
-                  </div>
-            </div>
-                  <div class="conversation-wrap col-md-6">
-                    <div class="conversation-header"> Topic</div>
-                    <div class="outgoing_msg">
-                      <div class="sent_msg">
-                        <p>Test which is a new approach to have all
-                          solutions</p>
-                        <span class="time_date"> 11:01 AM | June 9</span>
-                      </div>
-                    </div>
-                    <div class="incoming_msg">
-                      <div class="incoming_msg_img"> <img class="user-ico"
-                          src="https://ptetutorials.com/images/user-profile.png"
-                          alt="sunil"> </div>
-                      <div class="received_msg">
-                        <div class="received_withd_msg">
-                          <p>Test, which is a new approach to have</p>
-                          <span class="time_date"> 11:01 AM | Yesterday</span></div>
-                      </div>
-                    </div>
+                    <iframe
+                      src="https://allegro.pl/oferta/buty-big-star-damskie-trampki-czerwone-bb274724-7894993139"
+                      width="100%" height="100%"></iframe>
                   </div>
                 </div>
-              </main>
+                <div class="tab-pane fade" id="similar-products" role="tabpanel"
+                  aria-labelledby="similar-products-tab">
+
+                  <div class="allegro products">
+                    <iframe
+                      src="https://allegro.pl/uzytkownik/sklep-mombasa1/damskie-trampki-87981?bmatch=baseline-var-n-fas-1-0-0131"
+                      width="100%" height="100%"></iframe>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="conversation-wrap col-md-6">
+              <div class="conversation-header"> Topic</div>
+              <div class="messaging">
+                <div class="inbox_msg">
+                    <div class="msg_history" id="msg_history">
+                        <div class="message incoming_msg">
+                            <!-- <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div> -->
+                            <div class="received_msg">
+                                <div class="received_withd_msg">
+                                    <p>Test which is a new approach to have all
+                                        solutions</p>
+                                    <span class="time_date"> 11:01 AM | June 9</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="message outgoing_msg">
+                            <div class="sent_msg">
+                                <p>Test which is a new approach to have all
+                                    solutions</p>
+                                <p>Test which is a new approach to have all
+                                    solutions</p>
+                                <span class="time_date"> 11:01 AM | June 9</span>
+                            </div>
+                        </div>
+
+                        <div class="message incoming_msg">
+                            <!-- <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div> -->
+                            <div class="received_msg">
+                                <div class="received_withd_msg">
+                                    <p>Test, which is a new approach to have</p>
+                                    <span class="time_date"> 11:01 AM |
+                                        Yesterday</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="message outgoing_msg">
+                            <div class="sent_msg">
+                                <p>Apollo University, Delhi, India Test</p>
+                                <span class="time_date"> 11:01 AM | Today</span>
+                            </div>
+                        </div>
+                        <div class="message incoming_msg">
+                            <!-- <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div> -->
+                            <div class="received_msg">
+                                <div class="received_withd_msg">
+                                    <p>We work directly with our designers and
+                                        suppliers,
+                                        and sell direct to you, which means
+                                        quality, exclusive
+                                        products, at a price anyone can afford.</p>
+                                    <span class="time_date"> 11:01 AM | Today</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="type_msg">
+                        <div class="input_msg_write">
+                            <input type="text" class="write_msg" id="messageOut"
+                                placeholder="Type a message" />
+                            <button class="msg_send_btn" type="button"><i
+                                    class="fa fa-paper-plane-o"
+                                    aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
             </div>
           </div>
-          <script src="assets/jquery-3.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-          <script src="assets/util.js"></script>
-          <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script
-            src="assets/bootstrap.js"
-            integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
-            crossorigin="anonymous"></script>
-          <script src="assets/feather.js"></script>
+          </main>
+        </div>
+      </div>
+      <script src="assets/jquery-3.js"      
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"          
+            ></script>
+      
+      <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script
+        src="assets/bootstrap.js"></script>
+      
+      <script src="assets/feather.js"></script>
+      <script type="text/javascript" src="messenger.js"></script>
+      <script src="assets/dashboard.js"></script>
 
-          <script src="assets/dashboard.js"></script>
-
-        </body></html>
+    </body></html>
