@@ -28,7 +28,7 @@ class Chat(Resource):
     def get(self, mtimestamp: int):
         if "login" in session:
             es.indices.refresh(index="test-index")
-            res = es.search(index="test-index", body={"query": {"range": {"timestamp": {"gte": mtimestamp}}}})
+            res = es.search(index="test-index", body={"query": {"range": {"timestamp": {"gt": mtimestamp}}}})
             return [x['_source'] for x in res['hits']['hits']]
         else:
             abort(401)
