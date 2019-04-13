@@ -34,7 +34,9 @@ class Chat(Resource):
         if "login" in session:
             es.indices.refresh(index=ES_INDEX)
             res = es.search(index=ES_INDEX, body=
-            {"query":
+            {
+             "from" : 0, "size" : 10000,
+             "query":
                 {"bool":
                     {"must": [
                         {"range": {"timestamp": {"gt": mtimestamp}}},
