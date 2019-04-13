@@ -21,6 +21,8 @@ ACCESS_TOKEN = 'EAAD9BihriWABACKPLWlgn3mVo5NHttTaWO93pBWBsptvzzutmk2LuC1wKyif7od
 bot = Bot(ACCESS_TOKEN)
 
 es = Elasticsearch()
+ES_INDEX="messages"
+ES_DOC_TYPE="message"
 
 
 class Chat(Resource):
@@ -30,8 +32,8 @@ class Chat(Resource):
 
     def get(self, mtimestamp: int):
         if "login" in session:
-            es.indices.refresh(index="test-index")
-            res = es.search(index="test-index", body=
+            es.indices.refresh(index=ES_INDEX)
+            res = es.search(index=ES_INDEX, body=
             {"query":
                 {"bool":
                     {"must": [
@@ -86,7 +88,7 @@ def send_message(seller_id, buyer_id, message):
         'attachments': []
     }
 
-    es.index(index="test-index", doc_type='tweet', body=doc)
+    es.index(index=ES_INDEX, doc_type=ES_DOC_TYPE, body=doc)
 
 
 if __name__ == '__main__':

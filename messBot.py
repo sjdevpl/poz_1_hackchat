@@ -18,6 +18,9 @@ VERIFY_TOKEN = 'VERIFY_TOKEN'
 bot = Bot(ACCESS_TOKEN)
 es = Elasticsearch()
 
+ES_INDEX="messages"
+ES_DOC_TYPE="message"
+
 # We will receive messages that Facebook sends our bot at this endpoint
 @app.route("/", methods=['GET', 'POST'])
 def receive_message():
@@ -62,7 +65,7 @@ def receive_message():
                         'attachments': attachments
                         }
                 
-                es.index(index="test-index", doc_type='tweet', body=doc)
+                es.index(index=ES_INDEX, doc_type=ES_DOC_TYPE, body=doc)
                 
     return "Message Processed"
 
