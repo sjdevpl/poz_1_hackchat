@@ -170,50 +170,14 @@
           <div class="d-flex align-items-center active-user-list">
             <h2 class="h5 padding-right-20">Aktywni użytkownicy</h2>
             <ul class="list-group" id="list-clients">
-            <!-- <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+              <ul id="tabs-client" class="nav nav-tabs"  role="tablist">
 
-              <li class="active"><a href="#red" data-toggle="tab">Red</a></li>
-              <li><a href="#orange" data-toggle="tab">Orange</a></li>
-              <li><a href="#yellow" data-toggle="tab">Yellow</a></li>
-              <li><a href="#green" data-toggle="tab">Green</a></li>
-              <li><a href="#blue" data-toggle="tab">Blue</a></li> -->
-
-              <li class="list-group-item">
-                  <img class="user-ico"
-                    src="https://ptetutorials.com/images/user-profile.png"
-                    alt="sunil">
-                </li>
-                <li class="list-group-item" id="user1">
-                  <img class="user-ico"
-                    src="https://ptetutorials.com/images/user-profile.png"
-                    alt="sunil">
-                </li>
-                <li class="list-group-item" id="user2">
-                  <img class="user-ico"
-                    src="https://ptetutorials.com/images/user-profile.png"
-                    alt="sunil">
-                </li>
-                <li class="list-group-item" id="user3">
-                  <img class="user-ico"
-                    src="https://ptetutorials.com/images/user-profile.png"
-                    alt="sunil">
-                </li>
-                <li class="list-group-item">
-                  <img class="user-ico"
-                    src="https://ptetutorials.com/images/user-profile.png"
-                    alt="sunil">
-                </li>
-                <li class="list-group-item">
-                  <img class="user-ico"
-                    src="https://ptetutorials.com/images/user-profile.png"
-                    alt="sunil">
-                </li>
-                <li class="list-group-item">
-                  <img class="user-ico"
-                    src="https://ptetutorials.com/images/user-profile.png"
-                    alt="sunil">
-                </li>
-            </ul>
+                <!-- <li><a href="#red" class="nav-link active" data-toggle="tab"><img src="picture/man.png">Rower</a></li>
+              <li><a href="#orange" class="nav-link active" data-toggle="tab"><img src="picture/man.png"></a></li>
+              <li><a href="#yellow" class="nav-link active" data-toggle="tab"><img src="picture/man.png"></a></li>
+              <li><a href="#green" class="nav-link active" data-toggle="tab"><img src="picture/man.png"></a></li>
+              <li><a href="#blue"  class="nav-link active" data-toggle="tab"><img src="picture/man.png"></a></li> -->
+              </ul>
           </div>
         </div>
         <div class="row">
@@ -249,7 +213,8 @@
           <div class="conversation-wrap col-md-6">
             <div class="conversation-header"> Messenger</div>
             <div class="messaging">
-              <div class="inbox_msg">
+              <div class="inbox_msg tab-content" id="messenger-client">
+              <!-- <div id="messenger-client" class="tab-content">
                 <div class="msg_history" id="msg_history">
 
                 </div>
@@ -260,7 +225,7 @@
                     <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o"
                         aria-hidden="true"></i></button>
                   </div>
-                </div>
+                </div> -->
 
               </div>
             </div>
@@ -275,11 +240,12 @@
   <script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
   <script src="assets/bootstrap.js"></script>
 
+  <script type="text/javascript" src="client.js"></script>
   <script src="assets/feather.js"></script>
   <script type="text/javascript" src="messenger.js"></script>
 
   <script src="assets/dashboard.js"></script>
-  <script type="text/javascript" src="client.js"></script>
+
 
 </body>
 
