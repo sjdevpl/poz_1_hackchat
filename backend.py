@@ -13,19 +13,23 @@ class Chat(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('message')
 
-    def get(self, last_message_id):
+    def get(self, mtimestamp: int):
+        '''
+        :param mtimestamp:
+        :return:
+        '''
         if "messages" in session:
             return session["messages"][last_message_id:]
         else:
             abort(401)
 
-    def put(self, last_message_id):
+    def put(self, mtimestamp: id):
         if "messages" in session:
             args = self.parser.parse_args()
             if args["message"] is None:
                 abort(400)
             session["messages"].append(args['message'])
-        return self.get(last_message_id)
+        return self.get(mtimestamp)
 
 
 class Login(Resource):
@@ -43,7 +47,7 @@ class Login(Resource):
             abort(401)
 
 
-api.add_resource(Chat, '/api/chat/v1.0/message/<int:last_message_id>')
+api.add_resource(Chat, '/api/chat/v1.0/message/<int:mtimestamp>')
 api.add_resource(Login, '/api/chat/v1.0/login')
 
 if __name__ == '__main__':
