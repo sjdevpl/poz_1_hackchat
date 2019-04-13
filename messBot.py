@@ -22,7 +22,6 @@ es = Elasticsearch()
 @app.route("/", methods=['GET', 'POST'])
 def receive_message():
     if request.method == 'GET':
-        print("1")
         """Before allowing people to message your bot, Facebook has implemented a verify token
         that confirms all requests that your bot receives came from Facebook.""" 
         token_sent = request.args.get("hub.verify_token")
@@ -43,7 +42,8 @@ def receive_message():
                 message_id = message['message']['mid']
                 message_text = message['message'].get('text', '')
                 timestamp = message['timestamp']
-                attachments = [x['payload']['url'] for x in message.get('attachments', []) if x['type'] == 'image']
+                attachments = [x['payload']['url'] for x in message['message'].get('attachments', []) if x['type'] == 'image']
+                print(f"attachemnts= {attachments}")
 
                 # allegro parsing and data sending
                 # TODO: seller_id
