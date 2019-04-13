@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from flask import Flask, request, session, abort
 from flask_restful import Resource, Api, reqparse
 from flask_session import Session
@@ -15,7 +17,7 @@ Session(app)
 ACCESS_TOKEN = 'EAAD9BihriWABACKPLWlgn3mVo5NHttTaWO93pBWBsptvzzutmk2LuC1wKyif7odJiK05IH2aXVgJIvGltD1VZCZCtf0JvUSfsUndEJN0Bm1MtAz0y2Jo6UeWayKPPBuONbU8JX5WMj3a0LuZA0dMnFAPSOCBdSnxdR6LS6nEiXD6ZAWZBo6rZC'
 bot = Bot(ACCESS_TOKEN)
 
-es = Elasticsearch([{'host': '172.20.87.211'}])
+es = Elasticsearch()
 
 
 class Chat(Resource):
