@@ -108,9 +108,12 @@ body {
 /* 
 auction iframe
 */
-.auction {
+.allegro {
   height: 100vh;
   width: 100%;
+}
+.allegro iframe{
+  border: none;
 }
 /* 
 activeuserlist
