@@ -1,6 +1,10 @@
 from flask import Flask, request, session, abort
 from flask_restful import Resource, Api, reqparse
 from flask_session import Session
+from elasticsearch import Elasticsearch
+from pymessenger.bot import Bot
+
+import time
 
 app = Flask(__name__)
 api = Api(app)
@@ -8,27 +12,30 @@ app.config['SECRET_KEY'] = '_5#y2L"F4Q8zsdhgfdh'
 app.config['SESSION_TYPE'] = "filesystem"
 Session(app)
 
+ACCESS_TOKEN = 'EAAD9BihriWABACKPLWlgn3mVo5NHttTaWO93pBWBsptvzzutmk2LuC1wKyif7odJiK05IH2aXVgJIvGltD1VZCZCtf0JvUSfsUndEJN0Bm1MtAz0y2Jo6UeWayKPPBuONbU8JX5WMj3a0LuZA0dMnFAPSOCBdSnxdR6LS6nEiXD6ZAWZBo6rZC'
+bot = Bot(ACCESS_TOKEN)
+
+es = Elasticsearch([{'host': '172.20.87.211'}])
+
 
 class Chat(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('message')
+    parser.add_argument('buyer_id')
 
     def get(self, mtimestamp: int):
-        '''
-        :param mtimestamp:
-        :return:
-        '''
-        if "messages" in session:
-            return session["messages"][last_message_id:]
+        if "login" in session:
+            res = es.search(index="test-index", body={"query": {"range": {"timestamp": {"gte": mtimestamp}}}})
+            return [x['_source'] for x in res['hits']['hits']]
         else:
             abort(401)
 
     def put(self, mtimestamp: id):
-        if "messages" in session:
+        if "login" in session:
             args = self.parser.parse_args()
-            if args["message"] is None:
+            if args["message"] is None or args['buyer_id'] is None:
                 abort(400)
-            session["messages"].append(args['message'])
+            send_message(session['login'], args['buyer_id'], args["message"])
         return self.get(mtimestamp)
 
 
@@ -39,9 +46,9 @@ class Login(Resource):
 
     def post(self):
         args = self.parser.parse_args()
-        if args['login'] == "admin" and args['password'] == "admin":
+        if args['login'] == "sklep-mombasa1" and args['password'] == "admin":
             # init session
-            session['messages'] = []
+            session['login'] = args['login']
             return {"message": "Logged in successfully"}
         else:
             abort(401)
@@ -49,6 +56,24 @@ class Login(Resource):
 
 api.add_resource(Chat, '/api/chat/v1.0/message/<int:mtimestamp>')
 api.add_resource(Login, '/api/chat/v1.0/login')
+
+
+def send_message(seller_id, buyer_id, message):
+    resp = bot.send_text_message(buyer_id, message)
+
+    doc = {
+        'buyer_id': buyer_id,
+        'seller_id': seller_id,
+        'offer_id': None,
+        'direction': True,  # from seller to buyer
+        'message_id': resp['message_id'],
+        'message_text': message,
+        'timestamp': int(time.time()*1000),
+        'attachments': []
+    }
+
+    es.index(index="test-index", doc_type='tweet', body=doc)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

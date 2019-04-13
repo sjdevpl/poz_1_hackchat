@@ -19,5 +19,3 @@ res = es.search(index="test-index", body={"query": {"range": { "timestamp": { "g
 print("Got %d Hits:" % res['hits']['total'])
 for hit in res['hits']['hits']:
     print(f"{hit['_source']['message_text']}")
-
-

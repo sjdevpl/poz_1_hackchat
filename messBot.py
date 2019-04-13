@@ -27,7 +27,7 @@ def receive_message():
         that confirms all requests that your bot receives came from Facebook.""" 
         token_sent = request.args.get("hub.verify_token")
         return verify_fb_token(token_sent)
-    #if the request was not get, it must be POST and we can just proceed with sending a message back to user
+    # if the request was not get, it must be POST and we can just proceed with sending a message back to user
     else:
         # get whatever message a user sent the bot
        output = request.get_json()
@@ -38,21 +38,28 @@ def receive_message():
           messaging = event['messaging']
           for message in messaging:
             if message.get('message'):
-                #Facebook Messenger ID for user so we know where to send response back to
+                # Facebook Messenger ID for user so we know where to send response back to
                 sender_id = message['sender']['id']
-                #recipient_id -> z allegro
                 message_id = message['message']['mid']
                 message_text = message['message'].get('text', '')
                 timestamp = message['timestamp']
                 attachments = [x['payload']['url'] for x in message.get('attachments', []) if x['type'] == 'image']
-                
+
+                # allegro parsing and data sending
+                # TODO: seller_id
+                # TODO: offer_id
+                seller_id = "sklep-mombasa1"
+                offer_id = 7894993139
+
                 doc = {
-                        'sender_id': sender_id,
+                        'buyer_id': sender_id,
+                        'seller_id': seller_id,
+                        'offer_id': offer_id,
+                        'direction': False,             # from buyer to seller
                         'message_id': message_id,
-                        #'recipient_id' = recipient_id,
                         'message_text': message_text,
                         'timestamp': timestamp,
-                        'attachments': attachments                        
+                        'attachments': attachments
                         }
                 
                 es.index(index="test-index", doc_type='tweet', body=doc)
